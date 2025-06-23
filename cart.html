@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mwafrika Online Shop - Your Cart</title>
+    <style>
+        :root {
+            --primary: #e67e22;
+            --secondary: #27ae60;
+            --dark: #2c3e50;
+            --light: #f9f9f9;
+            --accent: #f1c40f;
+            --brown: #8b4513;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--dark);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--accent);
+        }
+        
+        .logo span {
+            color: var(--primary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+        
+        .auth-buttons a {
+            color: white;
+            text-decoration: none;
+            margin-left: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        
+        .auth-buttons a:first-child {
+            border: 1px solid var(--primary);
+        }
+        
+        .auth-buttons a:last-child {
+            background-color: var(--primary);
+        }
+        
+        .auth-buttons a:hover {
+            opacity: 0.9;
+        }
+        
+        .cart-container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+        
+        .cart-header {
+            font-size: 2rem;
+            color: var(--dark);
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--primary);
+        }
+        
+        .cart-items {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .cart-item {
+            display: grid;
+            grid-template-columns: 100px 1fr 1fr 1fr;
+            gap: 1.5rem;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid #eee;
+            align-items: center;
+        }
+        
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+        
+        .item-img {
+            width: 100%;
+            border-radius: 6px;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+        }
+        
+        .item-details h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .item-details p {
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        .item-price {
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        .quantity-control {
+            display: flex;
+            align-items: center;
+        }
+        
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            background-color: #eee;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .quantity-input {
+            width: 50px;
+            height: 30px;
+            text-align: center;
+            border: 1px solid #eee;
+            margin: 0 0.5rem;
+        }
+        
+        .remove-btn {
+            background: none;
+            border: none;
+            color: #e74c3c;
+            cursor: pointer;
+            font-size: 1.2rem;
+            margin-left: 1rem;
+        }
+        
+        .cart-summary {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            height: fit-content;
+        }
+        
+        .summary-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary);
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        
+        .total-row {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .checkout-btn {
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 2rem;
+            transition: background-color 0.3s;
+        }
+        
+        .checkout-btn:hover {
+            background-color: #219653;
+        }
+        
+        .continue-shopping {
+            display: inline-block;
+            margin-top: 2rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        .continue-shopping:hover {
+            color: var(--dark);
+        }
+        
+        .empty-cart {
+            text-align: center;
+            padding: 4rem 0;
+        }
+        
+        .empty-cart i {
+            font-size: 5rem;
+            color: #ddd;
+            margin-bottom: 1.5rem;
+        }
+        
+        .empty-cart h2 {
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .empty-cart p {
+            margin-bottom: 2rem;
+            color: #777;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 2rem;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--primary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .cart-container {
+                grid-template-columns: 1fr;
+                padding: 0 1rem;
+            }
+            
+            .cart-item {
+                grid-template-columns: 80px 1fr;
+                grid-template-rows: auto auto;
+            }
+            
+            .item-price, .quantity-control {
+                grid-column: 1 / -1;
+                justify-self: start;
+                margin-left: 80px;
+            }
+            
+            header {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+            }
+            
+            .auth-buttons {
+                margin-top: 1rem;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Mwafrika<span>Shop</span></div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="cart.html" class="active">Cart</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="auth-buttons">
+            <a href="login.html">Login</a>
+            <a href="signup.html">Sign Up</a>
+        </div>
+    </header>
+    
+    <div class="cart-container">
+        <div class="cart-items">
+            <h1 class="cart-header">Your Shopping Cart</h1>
+            
+            <div class="cart-item">
+                <img src="https://images.unsplash.com/photo-1584735422189-f9a7fe9a195e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Wooden Mask" class="item-img">
+                <div class="item-details">
+                    <h3>Traditional Wooden Mask</h3>
+                    <p>Hand-carved from African mahogany</p>
+                </div>
+                <div class="item-price">$39.99</div>
+                <div class="quantity-control">
+                    <button class="quantity-btn">-</button>
+                    <input type="number" value="1" min="1" class="quantity-input">
+                    <button class="quantity-btn">+</button>
+                    <button class="remove-btn" title="Remove item"><i class="fas fa-trash"></i></button>
+                </div>
+            </div>
+            
+            <div class="cart-item">
+                <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="African Fabric" class="item-img">
+                <div class="item-details">
+                    <h3>African Print Fabric</h3>
+                    <p>Authentic Ankara print, 6 yards</p>
+                </div>
+                <div class="item-price">$24.99</div>
+                <div class="quantity-control">
+                    <button class="quantity-btn">-</button>
+                    <input type="number" value="2" min="1" class="quantity-input">
+                    <button class="quantity-btn">+</button>
+                    <button class="remove-btn" title="Remove item"><i class="fas fa-trash"></i></button>
+                </div>
+            </div>
+            
+            <a href="shop.html" class="continue-shopping">
+                <i class="fas fa-arrow-left"></i> Continue Shopping
+            </a>
+        </div>
+        
+        <div class="cart-summary">
+            <h2 class="summary-title">Order Summary</h2>
+            
+            <div class="summary-row">
+                <span>Subtotal (3 items)</span>
+                <span>$89.97</span>
+            </div>
+            
+            <div class="summary-row">
+                <span>Shipping</span>
+                <span>$5.99</span>
+            </div>
+            
+            <div class="summary-row">
+                <span>Tax</span>
+                <span>$8.10</span>
+            </div>
+            
+            <div class="summary-row total-row">
+                <span>Total</span>
+                <span>$104.06</span>
+            </div>
+            
+            <button class="checkout-btn">Proceed to Checkout</button>
+            
+            <p style="text-align: center; margin-top: 1rem; color: #777; font-size: 0.9rem;">
+                <i class="fas fa-lock"></i> Secure checkout
+            </p>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Mwafrika Shop</h3>
+                <p>Bringing authentic African products to your doorstep. Quality and tradition in every item.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Shipping Policy</a></li>
+                    <li><a href="#">Returns & Refunds</a></li>
+                    <li><a href="#">Track Order</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</li>
+                    <li><i class="fas fa-phone"></i> +254 700 000000</li>
+                    <li><i class="fas fa-envelope"></i> info@mwafrikashop.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 Mwafrika Online Shop. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
