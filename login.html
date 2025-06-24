@@ -32,12 +32,24 @@
             justify-content: space-between;
             align-items: center;
         }
+        header nav{
+            display: flex;
+        }
         
         .logo {
             color: var(--accent);
             font-size: 1.8rem;
             font-weight: 700;
             text-decoration: none;
+            display: flex;
+        }
+        .logo img{
+            width: 7%;
+            height: 7%;
+            border-radius: 50%;
+        }
+        #logo{
+            align-items: baseline;
         }
         
         nav a {
@@ -129,12 +141,19 @@
 </head>
 <body>
     <header>
-        <a href="index.html" class="logo">Mwafrika</a>
+        <div class="logo" id="logo">
+            <img src="./assets/Mwafrika Logo - Emblem with Cursive Font.png" alt="">
+            <a href="index.html"  class="logo">Mwafrika</a>
+        </div>
+        
         <nav>
-            <a href="index.html">Home</a>
-            <a href="shop.html">Shop</a>
-            <a href="contact.html">Contact</a>
+                <a href="index.html">Home</a>
+                <a href="shop.html">Shop</a>
+                <a href="contact.html">Contact</a>
         </nav>
+        
+
+
     </header>
 
     <div class="login-container">

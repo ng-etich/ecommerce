@@ -46,6 +46,11 @@
         .logo span {
             color: var(--primary);
         }
+        .logo img{
+            width: 7%;
+            height: 7%;
+            border-radius: 50%;
+        }
         
         nav ul {
             display: flex;
@@ -74,10 +79,15 @@
             padding: 0.5rem 1rem;
             border-radius: 4px;
             transition: all 0.3s;
+            width: 100px;
+            /* display: flex; */
         }
         
         .auth-buttons a:first-child {
             border: 1px solid var(--primary);
+        }
+        .auth-buttons{
+            display: flex;
         }
         
         .auth-buttons a:last-child {
@@ -356,7 +366,10 @@
 </head>
 <body>
     <header>
-        <div class="logo">Mwafrika<span>Shop</span></div>
+        <div class="logo">
+            <img src="./assets/Mwafrika Logo - Emblem with Cursive Font.png" alt="">
+            <span>MwafrikaShop</span>
+        </div>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -376,12 +389,12 @@
             <h1 class="cart-header">Your Shopping Cart</h1>
             
             <div class="cart-item">
-                <img src="https://images.unsplash.com/photo-1584735422189-f9a7fe9a195e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Wooden Mask" class="item-img">
+                <img src="./assets/KolusMask1.webp" alt="Wooden Mask" class="item-img">
                 <div class="item-details">
                     <h3>Traditional Wooden Mask</h3>
                     <p>Hand-carved from African mahogany</p>
                 </div>
-                <div class="item-price">$39.99</div>
+                <div class="item-price">ksh 3400</div>
                 <div class="quantity-control">
                     <button class="quantity-btn">-</button>
                     <input type="number" value="1" min="1" class="quantity-input">
@@ -396,7 +409,7 @@
                     <h3>African Print Fabric</h3>
                     <p>Authentic Ankara print, 6 yards</p>
                 </div>
-                <div class="item-price">$24.99</div>
+                <div class="item-price">ksh310</div>
                 <div class="quantity-control">
                     <button class="quantity-btn">-</button>
                     <input type="number" value="2" min="1" class="quantity-input">
@@ -415,22 +428,22 @@
             
             <div class="summary-row">
                 <span>Subtotal (3 items)</span>
-                <span>$89.97</span>
+                <span>ksh 6000</span>
             </div>
             
             <div class="summary-row">
                 <span>Shipping</span>
-                <span>$5.99</span>
+                <span>ksh 300</span>
             </div>
             
             <div class="summary-row">
                 <span>Tax</span>
-                <span>$8.10</span>
+                <span>ksh 700</span>
             </div>
             
             <div class="summary-row total-row">
                 <span>Total</span>
-                <span>$104.06</span>
+                <span>ksh 7000</span>
             </div>
             
             <button class="checkout-btn">Proceed to Checkout</button>
