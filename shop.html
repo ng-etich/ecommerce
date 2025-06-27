@@ -299,7 +299,7 @@
         }
         
         .add-to-cart:hover {
-            background-color: #219653;
+            background-color: blue;
         }
         
         .pagination {
@@ -307,7 +307,11 @@
             justify-content: center;
             margin: 3rem 0;
         }
-        
+        #products{
+            width: 80%;
+            padding: 15px;
+            border-radius: 7px;
+        }
         .pagination a {
             color: var(--dark);
             padding: 0.5rem 1rem;
@@ -418,6 +422,11 @@
         </aside>
         
         <main class="products-section">
+            <label id="products" placeholder="search for products......">
+                <i class="fas fa-search"></i>
+                
+                <input type="text" id="products" name="products" placeholder="search for products......">
+            </label>
             <h2 class="section-title">All Products</h2>
             
             <div class="products-container">
@@ -543,7 +552,7 @@
             </div>
         </div>
         <div class="copyright">
-            <p>&copy; 2023 Mwafrika Online Shop. All rights reserved.</p>
+            <p>&copy; 2025 Mwafrika Online Shop. All rights reserved.</p>
         </div>
     </footer>
 </body>
